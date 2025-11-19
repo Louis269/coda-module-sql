@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: coda-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: codaSchool
+      POSTGRES_USER: codaSchoolUser
+      POSTGRES_PASSWORD: verySecretAndSecurePassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts:/scripts
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codaSchoolUser -d codaSchool"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
