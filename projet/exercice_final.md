@@ -20,9 +20,9 @@ Vous devez construire une base permettant de gérer :
 
 * les bières (nom, type, degrés, catégorie…)
 
-* la table des prix (relation N..N entre bars et bières)
+* la table des prix
 
-* les quartiers (relation 1..N)
+* les quartiers 
 
 Domaines travaillés : relations, cardinalités, seed volumineux, agrégations.
 

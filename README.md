@@ -70,6 +70,8 @@ docker-compose --version
 
 pgAdmin est disponible via un docker-compose séparé. Il sera accessible automatiquement après le démarrage.
 
+> 📖 **Guide complet** : Consultez le fichier [`README-pgadmin.md`](README-pgadmin.md) pour un guide détaillé d'utilisation de pgAdmin avec Docker.
+
 > ⚠️ **En cas de problème avec pgAdmin** : Utilisez le fichier `docker-compose.yml` (sans pgAdmin) et installez un client externe (voir Option 2).
 
 **Option 2 : Clients externes (alternative)**
@@ -144,20 +146,35 @@ docker-compose down -v
 
 ### Si vous utilisez docker-compose-pgadmin.yml
 
-1. Accédez à pgAdmin via votre navigateur : http://localhost:5050
-2. Connectez-vous avec :
+**pgAdmin est accessible sur le port 5050**
+
+1. **Accédez à pgAdmin** via votre navigateur :
+   ```
+   http://localhost:5050
+   ```
+
+2. **Première connexion à pgAdmin** :
    - Email : `admin@coda-school.com`
    - Password : `admin`
-3. Cliquez sur "Add New Server"
-4. Dans l'onglet "General" :
+   - Cliquez sur "Login"
+
+3. **Ajouter le serveur PostgreSQL** :
+   - Cliquez sur "Add New Server" (ou clic droit sur "Servers" → "Register" → "Server")
+   
+4. **Onglet "General"** :
    - Name : `Coda School`
-5. Dans l'onglet "Connection" :
-   - Host : `postgres` (nom du service dans docker-compose)
+   
+5. **Onglet "Connection"** :
+   - Host name/address : `postgres` (nom du service dans docker-compose, **pas** `localhost`)
    - Port : `5432`
-   - Database : `codaSchool`
+   - Maintenance database : `codaSchool`
    - Username : `codaSchoolUser`
    - Password : `verySecretAndSecurePassword`
+   - ✅ Cochez "Save password" (optionnel mais pratique)
+   
 6. Cliquez sur "Save"
+
+> 💡 **Important** : Utilisez `postgres` comme host (pas `localhost`) car pgAdmin et PostgreSQL sont dans le même réseau Docker.
 
 ### Si vous utilisez un client externe (pgAdmin, DBeaver, etc.)
 
